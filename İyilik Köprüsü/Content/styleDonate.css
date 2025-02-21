@@ -1,0 +1,22 @@
+﻿body {
+    background-image: url('https://www.yesilay.org.tr/assets/img/bagis-yap-desktop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#projeDetay {
+    transition: all 0.3s ease-in-out;
+}
+
+    #projeDetay.d-none {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+    }
+
+    #projeDetay:not(.d-none) {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }

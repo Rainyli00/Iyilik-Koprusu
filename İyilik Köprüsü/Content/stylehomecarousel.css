@@ -1,0 +1,16 @@
+﻿
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black;
+}
+
+
+body {
+    background-image: url('/Content/background.jpg'); /* Resim yolu */
+    background-size: 270px; /* Resmin tüm ekranı kaplaması için */
+    background-repeat: no-repeat; /* Resmin tekrarlanmaması için */
+    background-attachment: fixed; /* Kaydırma yapıldığında resmin sabit kalması için */
+    background-position: center; /* Resmin merkezde görünmesi için */
+    
+}   

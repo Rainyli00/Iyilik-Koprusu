@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Yönetici Girişi";
+    Layout = null;
+}
+
+
+
+<!-- Bootstrap Icons CSS -->
+<link href="~/Content/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Yönetici Girişi</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Hata Mesajı -->
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                    }
+                    <!-- Giriş Formu -->
+                    <form method="post" action="@Url.Action("YoneticiLogin", "AdminLogin")">
+                        <!-- E-posta Girişi -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-posta Adresi</label>
+                            <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta Adresinizi Girin" required>
+                        </div>
+
+                        <!-- Şifre Girişi -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Şifre</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" name="Password" placeholder="Şifrenizi Girin" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Giriş Yap Butonu -->
+                        <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Şifre Gösterme Scripti -->
+<script>
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordInput = document.getElementById("password");
+        const passwordIcon = document.getElementById("togglePasswordIcon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordIcon.classList.remove("bi-eye");
+            passwordIcon.classList.add("bi-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            passwordIcon.classList.remove("bi-eye-slash");
+            passwordIcon.classList.add("bi-eye");
+        }
+    });
+</script>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08f13f26804c470790425a61174c6827" Name="Diagram1">
+        <EntityTypeShape EntityType="BagisDBModel.Bagis" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Gelir" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.GeriBildirim" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.GeriBildirimTipi" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Gider" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.IslemTuru" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.KullaniciAdresi" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Kullanicilar" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Loglar" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.OdemeYontemi" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Proje" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.ProjeKategori" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.ProjeYorumlari" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Roller" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Rozetler" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Yedekler" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.Yonetici" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BagisDBModel.KullaniciLoginSorgu" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="BagisDBModel.FK__Bagis__kullanici__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Bagis__odeme_yon__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Bagis__proje_id__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Gelir__kategori___571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__GeriBildi__gerib__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__GeriBildi__kulla__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Gider__kategori___59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Loglar__islem_tu__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Kullanici__kulla__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Kullanici__rol_i__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Kullanici__rozet__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Loglar__kullanic__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__ProjeYoru__kulla__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__Proje__kategori___44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="BagisDBModel.FK__ProjeYoru__proje__628FA481" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+<link href="~/Content/stylehomecarousel.css" rel="stylesheet" />
+
+<div class="container text-center mt-5">
+    <!-- Başlık -->
+    <h1 class="mb-4">İyilik Köprüsü</h1>
+
+    <!-- Açıklama -->
+    <p class="lead mb-4">
+        İhtiyaç sahiplerine ulaşmak ve iyiliği çoğaltmak için bir adım atın. Bağışlarınız, daha iyi bir dünya için umut olabilir.
+    </p>
+
+
+
+
+
+    <!-- Projeler -->
+    <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            @if (Model != null)
+            {
+                var Aktifmi = true;
+                foreach (var proje in Model)
+                {
+                    <div class="carousel-item @(Aktifmi ? "active" : "")">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="@proje.proje_resim_link" class="card-img-top" alt="@proje.proje_ad">
+                                <div class="card-body">
+                                    <h5 class="card-title">@proje.proje_ad</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    Aktifmi = false;
+                }
+            }
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control-prev" href="#projectCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#projectCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+    <!-- Bağış Yap Butonu -->
+    <a href="@Url.Action("Index", "Donate")" class="btn btn-success btn-lg">Bağış Yap</a>
+</div> 

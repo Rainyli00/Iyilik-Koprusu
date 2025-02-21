@@ -1,0 +1,422 @@
+﻿@{
+    ViewBag.Title = "Hesap Özeti";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Dikey Tablar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#hesapOzetim" class="list-group-item list-group-item-action active" data-bs-toggle="tab" role="tab" aria-controls="hesapOzetim">Hesap Özeti</a>
+                <a href="#bagislarim" class="list-group-item list-group-item-action" data-bs-toggle="tab" role="tab" aria-controls="bagislarim">Bağışlarım</a>
+                <a href="#hesapAyarlarim" class="list-group-item list-group-item-action" data-bs-toggle="tab" role="tab" aria-controls="hesapAyarlarim">Hesap Ayarlarım</a>
+                <a href="#geriBildirim" class="list-group-item list-group-item-action" data-bs-toggle="tab" role="tab" aria-controls="geriBildirim">Geri Bildirim</a>
+            </div>
+        </div>
+
+        <!-- Tab İçerikleri -->
+        <div class="col-md-9">
+            <div class="tab-content">
+                <!-- Hesap Özeti -->
+                <div class="tab-pane fade show active" id="hesapOzetim" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Hesap Özeti</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Ad Soyad:</strong> @Session["UserName"]</p>
+                            <p><strong>Rozet:</strong> @ViewBag.Rozet</p>
+                            <p><strong>Toplam Bağış Tutarınız:</strong> @ViewBag.ToplamBagisTutari ₺</p>
+                            <h6>Son Bağışlarınız</h6>
+                            <ul class="list-group">
+                                @foreach (var bagis in ViewBag.SonBagislar)
+                                {
+                                    <li class="list-group-item">
+                                        <strong>@bagis.ProjeAd</strong> - @bagis.BagisTarihi.ToString("dd.MM.yyyy HH:mm:ss") - <strong>@bagis.BagisMiktari ₺</strong>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bağışlarım -->
+                <div class="tab-pane fade" id="bagislarim" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Bağışlarım</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul id="donationList" class="list-group mb-3">
+                                <!-- Bağışlar buraya yüklenecek -->
+                            </ul>
+
+                            <!-- Sayfalama -->
+                            <nav>
+                                <ul class="pagination" id="pagination">
+                                    <!-- Sayfalama butonları buraya eklenecek -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hesap Ayarlarım -->
+                <div class="tab-pane fade" id="hesapAyarlarim" role="tabpanel" aria-labelledby="hesapAyarlarim-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 style="font-size: 1.5rem;">Hesap Ayarlarım</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="hesapAyarlarimAccordion">
+                                <!-- İletişim Bilgileri -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="iletisimBilgileriHeader">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#iletisimBilgileri" aria-expanded="true" aria-controls="iletisimBilgileri" style="font-size: 1.25rem;">
+                                            İletişim Bilgileri
+                                        </button>
+                                    </h2>
+                                    <div id="iletisimBilgileri" class="accordion-collapse collapse show" aria-labelledby="iletisimBilgileriHeader" data-bs-parent="#hesapAyarlarimAccordion">
+                                        <div class="accordion-body">
+                                            <form id="contactForm">
+                                                <div class="mb-3">
+                                                    <label for="telefon" class="form-label">Telefon</label>
+                                                    <input type="text" class="form-control" id="telefon" value="@Session["UserPhone"]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">E-posta</label>
+                                                    <input type="email" class="form-control" id="email" value="@Session["UserEmail"]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="il" class="form-label">İl</label>
+                                                    <input type="text" class="form-control" id="il" value="@Session["UserIl"]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="ilce" class="form-label">İlçe</label>
+                                                    <input type="text" class="form-control" id="ilce" value="@Session["UserIlce"]">
+                                                </div>
+                                                <button type="button" class="btn btn-primary" id="IletisimGuncelleBtn">Güncelle</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Şifre Değiştirme -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sifreDegistirmeHeader">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sifreDegistirme" aria-expanded="false" aria-controls="sifreDegistirme" style="font-size: 1.25rem;">
+                                            Şifre Değiştirme
+                                        </button>
+                                    </h2>
+                                    <div id="sifreDegistirme" class="accordion-collapse collapse" aria-labelledby="sifreDegistirmeHeader" data-bs-parent="#hesapAyarlarimAccordion">
+                                        <div class="accordion-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="eskiSifre" class="form-label">Eski Şifre</label>
+                                                    <input type="password" class="form-control" id="eskiSifre" placeholder="Eski Şifreniz">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="yeniSifre" class="form-label">Yeni Şifre</label>
+                                                    <input type="password" class="form-control" id="yeniSifre" placeholder="Yeni Şifreniz">
+                                                </div>
+                                                <button type="button" class="btn btn-primary" id="SifreGuncelleBtn">Şifreyi Güncelle</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geri Bildirim -->
+                <div class="tab-pane fade" id="geriBildirim" role="tabpanel" aria-labelledby="geriBildirim-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Geri Bildirim</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="feedbackForm">
+                                <div class="mb-3">
+                                    <label for="feedbackType" class="form-label">Geri Bildirim Türü</label>
+                                    <select class="form-select" id="feedbackType">
+                                        <option value="">Yükleniyor...</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedbackMessage" class="form-label">Mesajınız</label>
+                                    <textarea class="form-control" id="feedbackMessage" rows="4" placeholder="Geri bildiriminizi buraya yazın..."></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submitFeedback">Gönder</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Yorum Yap Modal Bootstrap -->
+<div class="modal fade" id="yorumKismi" tabindex="-1" aria-labelledby="yorumModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="yorumModalLabel">Yorum Yap</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="yorumForm">
+                    <input type="hidden" id="selectedProjeId" />
+                    <div class="mb-3">
+                        <label for="yorumMetni" class="form-label">Yorumunuz</label>
+                        <textarea class="form-control" id="yorumMetni" rows="4" placeholder="Yorumunuzu buraya yazın..."></textarea>
+                    </div>
+                    <button type="button" id="yorumGonderBtn" class="btn btn-primary">Yorumu Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Geri Bildirim kısmı-->
+<script>
+ $(document).ready(function () {
+        // Geri bildirim türlerini Ajax ile yükleme
+        $.ajax({
+            url: '@Url.Action("GeriBildirim", "Account")',
+            type: 'GET',
+            success: function (data) {
+                var feedbackTypeSelect = $('#feedbackType');
+                feedbackTypeSelect.empty();
+                feedbackTypeSelect.append('<option value="">Seçiniz</option>');
+
+                // Gelen veriyi dropdown'a ekle
+                $.each(data, function (index, item) {
+                    feedbackTypeSelect.append('<option value="' + item.geribildirim_tipi_id + '">' + item.geribildirim_adi + '</option>');
+                });
+            },
+            error: function () {
+                alert("Geri bildirim türleri yüklenemedi.");
+            }
+        });
+
+        // Geri bildirimi gönderme
+        $('#submitFeedback').on('click', function () {
+            var geribildirimTipiId = $('#feedbackType').val();
+            var geribildirimMesaj = $('#feedbackMessage').val();
+
+            if (!geribildirimMesaj.trim()) {
+                alert("Lütfen mesaj alanını boş bırakmayınız.");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("GeriBildirimGonder", "Account")',
+                type: 'POST',
+                data: { geribildirimTipiId: geribildirimTipiId, geribildirimMesaj: geribildirimMesaj },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#feedbackMessage').val(''); // Formu temizle
+                        $('#feedbackType').val(''); // Dropdown'ı sıfırla
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert("Bir hata oluştu, lütfen tekrar deneyiniz.");
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
+
+<!-- Hesap ayarları kısmı-->
+<script>
+ $(document).ready(function () {
+        // İletişim bilgilerini güncelleme
+     $('#IletisimGuncelleBtn').on('click', function () {
+            var telefon = $('#telefon').val();
+            var email = $('#email').val();
+            var il = $('#il').val();
+            var ilce = $('#ilce').val();
+
+            $.ajax({
+                url: '@Url.Action("GuncelleIletisim", "Account")',
+                type: 'POST',
+                data: { telefon: telefon, email: email, il: il, ilce: ilce },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        });
+
+        // Şifreyi değiştirme
+
+     $('#SifreGuncelleBtn').on('click', function () {
+            const eskiSifre = $('#eskiSifre').val();
+            const yeniSifre = $('#yeniSifre').val();
+
+            $.ajax({
+                url: '@Url.Action("GuncelleSifre", "Account")',
+                type: 'POST',
+                data: {
+                    eskiSifre: eskiSifre,
+                    yeniSifre: yeniSifre
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Form alanlarını boşalt
+                        $('#eskiSifre').val('');
+                        $('#yeniSifre').val('');
+
+                        alert(response.message);
+                    } else {
+                        alert("Hata: "+response.message);
+                    }
+
+                },
+                error: function (xhr,status,error) {
+                    alert("Bir hata oluştu: "+xhr.responseText);
+                }
+            });
+        });
+ });
+
+
+
+
+</script>
+<!-- Bağışlarım kısmı-->
+<script>
+
+    $(document).ready(function () {
+    const loadDonations = (page) => {
+        $.get('@Url.Action("Bagislarim", "Account")', { page: page }, function (data) {
+            const donationList = $('#donationList');
+            const pagination = $('#pagination');
+            donationList.empty();
+            pagination.empty();
+
+            // Bağışları listele
+            data.bagislar.forEach(function (bagis) {
+                donationList.append(`
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>${bagis.proje_ad}</strong> - ${new Date(bagis.bagis_tarihi).toLocaleString('tr-TR')} - <strong>${bagis.bagis_miktari} ₺</strong>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary yorumYapBtn" data-projeid="${bagis.proje_id}">Yorum Yap</button>
+                    </li>
+                `);
+            });
+
+            // "Yorum Yap" butonuna tıklama
+            $('.yorumYapBtn').on('click', function () {
+                const projeId = $(this).data('projeid');
+                $('#selectedProjeId').val(projeId);
+                $('#yorumKismi').modal('show');
+            });
+
+            pagination.empty();
+
+            const totalPages = data.totalPages; // Toplam sayfa sayısı
+            const maxVisiblePages = 5; // Aynı anda görünecek maksimum sayfa sayısı
+            const startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
+            const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            // İlk sayfa ve noktalar
+            if (startPage > 1) {
+                pagination.append(`
+        <li class="page-item">
+            <a class="page-link" href="#" data-page="1">1</a>
+        </li>
+    `);
+                if (startPage > 2) {
+                    pagination.append(`
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        `);
+                }
+            }
+
+            // Orta kısımdaki sayfa numaraları
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.append(`
+        <li class="page-item ${i === page ? 'active' : ''}">
+            <a class="page-link" href="#" data-page="${i}">${i}</a>
+        </li>
+    `);
+            }
+
+            // Son sayfa ve noktalar
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    pagination.append(`
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        `);
+                }
+                pagination.append(`
+        <li class="page-item">
+            <a class="page-link" href="#" data-page="${totalPages}">${totalPages}</a>
+        </li>
+    `);
+            }
+
+            // Sayfa numaralarına tıklama olayını yeniden bağla
+            $('.page-link').off('click').on('click', function (e) {
+                e.preventDefault();
+                const selectedPage = $(this).data('page');
+                loadDonations(selectedPage); // Veriyi yükle
+            });
+
+        });
+    };
+
+    // İlk sayfa yükleme
+    loadDonations(1);
+
+    // Yorum gönderme
+    $('#yorumGonderBtn').on('click', function () {
+        const projeId = $('#selectedProjeId').val();
+        const yorumMetni = $('#yorumMetni').val();
+
+        $.ajax({
+            url: '@Url.Action("YorumYap", "Account")',
+            type: 'POST',
+            data: { projeId: projeId, yorumMetni: yorumMetni },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    $('#yorumKismi').modal('hide');
+                    $('#yorumMetni').val('');
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
+    });
+});
+
+</script>

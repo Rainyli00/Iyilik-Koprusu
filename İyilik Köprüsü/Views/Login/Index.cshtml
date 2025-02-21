@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Oturum Aç";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!-- Bootstrap Icons CSS -->
+<link href="~/Content/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewBag.ActiveTab == "login" || ViewBag.ActiveTab == null ? "active" : "")" href="#login" data-bs-toggle="tab">Giriş Yap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewBag.ActiveTab == "register" ? "active" : "")" href="#register" data-bs-toggle="tab">Kayıt Ol</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <!-- Giriş Yap -->
+                        <div class="tab-pane fade @(ViewBag.ActiveTab == "login" || ViewBag.ActiveTab == null ? "show active" : "")" id="login">
+                            @if (ViewBag.ErrorMessage != null && ViewBag.ActiveTab == "login")
+                            {
+                                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                            }
+                            <form method="post" action="@Url.Action("Login", "Login")">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-posta Adresi:</label>
+                                    <input type="email" class="form-control" id="email" name="Email" placeholder="E-posta Adresinizi Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Şifre:</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="password" name="Sifre" placeholder="Şifrenizi Girin" required>
+                                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                            <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+                            </form>
+                        </div>
+
+                        <!-- Kayıt Ol -->
+                        <div class="tab-pane fade @(ViewBag.ActiveTab == "register" ? "show active" : "")" id="register">
+                            @if (ViewBag.ErrorMessage != null && ViewBag.ActiveTab == "register")
+                            {
+                                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                            }
+                            <form method="post" action="@Url.Action("Register", "Login")">
+                                <div class="mb-3">
+                                    <label for="regName" class="form-label">Ad Soyad:</label>
+                                    <input type="text" class="form-control" id="regName" name="isim" placeholder="Adınızı ve Soyadınızı Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regEmail" class="form-label">E-posta Adresi:</label>
+                                    <input type="email" class="form-control" id="regEmail" name="Email" placeholder="E-posta Adresinizi Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regPhone" class="form-label">Telefon:</label>
+                                    <input type="tel" class="form-control" id="regPhone" name="telefon" placeholder="Telefon Numaranızı Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regCity" class="form-label">İl:</label>
+                                    <input type="text" class="form-control" id="regCity" name="sehir" placeholder="İlinizi Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regDistrict" class="form-label">İlçe:</label>
+                                    <input type="text" class="form-control" id="regDistrict" name="ilce" placeholder="İlçenizi Girin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regPassword" class="form-label">Şifre:</label>
+                                    <input type="password" class="form-control" id="regPassword" name="sifre" placeholder="Şifrenizi Girin" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Kayıt Ol</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        const passwordIcon = document.getElementById('togglePasswordIcon');
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        passwordIcon.classList.toggle('bi-eye');
+        passwordIcon.classList.toggle('bi-eye-slash');
+    });
+</script>

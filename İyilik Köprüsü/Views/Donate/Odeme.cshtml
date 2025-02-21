@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Odeme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-4" style="max-width: 500px;">
+    <h2 class="text-center mb-4">Ödeme Sayfası</h2>
+
+    <!-- Bağış Bilgilerinin Özeti -->
+    <div class="mb-4">
+
+        <p><strong>Proje:</strong> @ViewBag.SeciliProjeAdi</p>
+        <p><strong>Bağış Tutarı:</strong> @ViewBag.BagisTutari ₺</p>
+    </div>
+
+    <form method="post" action="@Url.Action("ÖdemeTamamlama", "Donate")">
+        <!-- Ödeme Yöntemi -->
+        <div class="mb-3">
+            <label for="paymentMethod" class="form-label">Ödeme Yöntemi</label>
+            <select class="form-select" id="paymentMethod" name="odeme_yontem_id" required>
+                @foreach (var odeme in ViewBag.OdemeYontemleri)
+                {
+                    <option value="@odeme.Value">@odeme.Text</option>
+                }
+            </select>
+        </div>
+
+        <!-- Kart Bilgileri -->
+        <div class="card-info">
+            <h5 class="mb-3">Kart Bilgileri</h5>
+
+            @if (ViewBag.OnayMesaj != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.OnayMesaj
+                </div>
+            }
+
+            <!-- Kart Numarası -->
+            <div class="mb-3">
+                <label for="cardNumber" class="form-label">Kart Numarası</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="Kart numarasını giriniz" maxlength="16" required>
+            </div>
+
+            <!-- Son Kullanma Tarihi -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="expiryDate" class="form-label">Son Kullanma Tarihi</label>
+                    <input type="month" class="form-control" id="expiryDate" required>
+                </div>
+
+                <!-- CVV -->
+                <div class="col-md-6 mb-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="CVV" maxlength="3" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ödeme Yap -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success btn-lg">Ödeme Yap</button>
+        </div>
+    </form>
+</div>
+
+@if (TempData["OnayMesajı"] != null)
+{
+    <!-- Ödeme başarılı mesajını gösterilir bootstarp ile -->
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" aria-labelledby="successMessageModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg border-0 rounded">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successMessageModal">Ödeme Sonucu</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="alert alert-success fs-5 fw-bold">@TempData["OnayMesajı"]</p>
+                    <p>5 saniye içinde ana sayfaya yönlendirileceksiniz...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="5;url=@Url.Action("Index", "Home")" />
+}
+
+@if (TempData["HataMesajı"] != null)
+{
+    <!-- Hata mesajını Bootstrap Modal ile göster -->
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" aria-labelledby="errorMessageModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg border-0 rounded">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorMessageModal">Hata Sonucu</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="alert alert-danger fs-5 fw-bold">@TempData["HataMesajı"]</p>
+                    <p>5 saniye içinde ana sayfaya yönlendirileceksiniz...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="5;url=@Url.Action("Index", "Home")" />
+}

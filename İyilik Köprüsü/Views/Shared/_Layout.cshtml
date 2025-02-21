@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/favicon.ico")">
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/bootstrap.bundle.min.js")"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header Başlangıcı-->
+    <header>
+        <!-- nav bar kullanıyoruz -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container position-relative">
+                <!-- Sol Menü -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">AnaSayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "About")">Hakkımızda</a>
+                    </li>
+                </ul>
+
+                <!-- Ortadaki İyilik Köprüsü yazısı Anasayfaya götürür -->
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">İyilik Köprüsü</a>
+
+                <!-- Sağ Menü -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success" href="@Url.Action("Index", "Donate")">Bağış Yap</a>
+                    </li>
+
+                    <!-- Dinamik Kullanıcı Kontrolü -->
+                    @if (Session["UserID"] != null)
+                    {
+                        <li class="nav-item dropdown ms-2">
+                            <a class="btn btn-outline-primary dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @Session["UserName"]
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="userMenu">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Account")">Hesabım</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary ms-2" href="@Url.Action("Index", "Login")">Oturum Aç</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- İndexlerimizin Olduğu Kısım -->
+    <main class="container mt-4">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="container text-center">
+            <p class="mb-0">© 2024 RaEm Tech- Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

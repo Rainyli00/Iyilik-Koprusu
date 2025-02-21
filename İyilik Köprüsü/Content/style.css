@@ -1,0 +1,69 @@
+﻿/* Tüm sayfayı kapsaması için temel ayarlar */
+body, html {
+    height: 100%; /* Sayfa ve body tam yükseklikte */
+    margin: 0; /* Varsayılan margin'i kaldır */
+    display: flex; /* Flexbox düzeni kullan */
+    flex-direction: column; /* Dikey hizalama */
+}
+
+/* Ana içeriği ayarlamak için */
+.main-content {
+    flex: 1; /* İçerik alanı kalan boşluğu kaplasın */
+    min-height: 80vh; /* Minimum yüksekliği belirle */
+}
+
+/* Navbar ayarları */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Sol ve sağdaki menüyü ayır */
+    align-items: center; /* Menüleri dikeyde ortala */
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa; /*  arka plan rengi */
+    border-bottom: 1px solid #ddd; /* Alt çizgi */
+}
+
+/* Navbar markasını ortalamak için */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #28a745; /* Yeşil logo */
+    text-decoration: none;
+    position: absolute; /* Ortalamak için */
+    left: 50%;
+    transform: translateX(-50%); /* Gerçek ortalama */
+}
+
+/* Navbar menü ayarları */
+.navbar-nav {
+    display: flex;
+    gap: 15px; /* Menü öğeleri arasında boşluk */
+}
+
+    .navbar-nav .nav-item a {
+        color: #333; /* Daha koyu renk */
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 5px; /* Hafif köşeler */
+    }
+
+        .navbar-nav .nav-item a:hover {
+            background-color: #e9ecef; /* Hover rengi */
+            color: #28a745;
+        }
+
+    .navbar-nav .btn {
+        margin-left: 10px;
+    }
+    
+/* Footer ayarları */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto; /* Kalan alanı kullanarak alta yerleştir */
+}
+
+
+

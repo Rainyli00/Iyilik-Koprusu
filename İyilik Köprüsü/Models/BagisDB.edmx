@@ -1,0 +1,1296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BagisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bagis">
+          <Key>
+            <PropertyRef Name="bagis_id" />
+          </Key>
+          <Property Name="bagis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="odeme_yontem_id" Type="int" Nullable="false" />
+          <Property Name="proje_id" Type="int" Nullable="false" />
+          <Property Name="bagis_miktari" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="bagis_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gelir">
+          <Key>
+            <PropertyRef Name="gelir_id" />
+          </Key>
+          <Property Name="gelir_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_id" Type="int" Nullable="false" />
+          <Property Name="gelir_miktari" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="gelir_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeriBildirim">
+          <Key>
+            <PropertyRef Name="geribildirim_id" />
+          </Key>
+          <Property Name="geribildirim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="geribildirim_tipi_id" Type="int" Nullable="false" />
+          <Property Name="geribildirim_mesaj" Type="nvarchar" MaxLength="300" />
+          <Property Name="geribildirim_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeriBildirimTipi">
+          <Key>
+            <PropertyRef Name="geribildirim_tipi_id" />
+          </Key>
+          <Property Name="geribildirim_tipi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geribildirim_adi" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gider">
+          <Key>
+            <PropertyRef Name="gider_id" />
+          </Key>
+          <Property Name="gider_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_id" Type="int" Nullable="false" />
+          <Property Name="gider_miktari" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="gider_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IslemTuru">
+          <Key>
+            <PropertyRef Name="islem_turu_id" />
+          </Key>
+          <Property Name="islem_turu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="islem_turu_adi" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciAdresi">
+          <Key>
+            <PropertyRef Name="adres_id" />
+          </Key>
+          <Property Name="adres_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="sehir_adi" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ilce_adi" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol_id" Type="int" Nullable="false" />
+          <Property Name="rozet_id" Type="int" />
+          <Property Name="ad_soyad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="15" />
+          <Property Name="kayit_tarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Loglar">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="islem_turu_id" Type="int" Nullable="false" />
+          <Property Name="islem_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OdemeYontemi">
+          <Key>
+            <PropertyRef Name="odeme_yontem_id" />
+          </Key>
+          <Property Name="odeme_yontem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odeme_yontem_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="proje_id" />
+          </Key>
+          <Property Name="proje_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_id" Type="int" Nullable="false" />
+          <Property Name="proje_ad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="proje_aciklamasi" Type="nvarchar" MaxLength="500" />
+          <Property Name="proje_resim_link" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProjeKategori">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjeYorumlari">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="proje_id" Type="int" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="yorum_metni" Type="nvarchar" MaxLength="300" />
+          <Property Name="yorum_tarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roller">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="int" Nullable="false" />
+          <Property Name="rol_ad" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rozetler">
+          <Key>
+            <PropertyRef Name="rozet_id" />
+          </Key>
+          <Property Name="rozet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rozet_ad" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yedekler">
+          <Key>
+            <PropertyRef Name="YedekID" />
+          </Key>
+          <Property Name="YedekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VeritabanıAdı" Type="nvarchar" MaxLength="20" />
+          <Property Name="YedekYolu" Type="nvarchar" MaxLength="500" />
+          <Property Name="YedeklemeTarihi" Type="datetime" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="yonetici_id" />
+          </Key>
+          <Property Name="yonetici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yonetici_ad_soyad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="yonetici_sifre" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="yonetici_mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="yonetici_telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BagisDB.dbo.KullaniciLoginSorgu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="KullaniciLoginSorgu">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+            <PropertyRef Name="e_mail" />
+            <PropertyRef Name="telefon" />
+            <PropertyRef Name="ad_soyad" />
+            <PropertyRef Name="ilce_adi" />
+            <PropertyRef Name="sehir_adi" />
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="ad_soyad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ilce_adi" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="sehir_adi" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="15" />
+          <Property Name="rol_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bagis__kullanici__49C3F6B7">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bagis__odeme_yon__4AB81AF0">
+          <End Role="OdemeYontemi" Type="Self.OdemeYontemi" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeYontemi">
+              <PropertyRef Name="odeme_yontem_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="odeme_yontem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bagis__proje_id__4BAC3F29">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="proje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gelir__kategori___571DF1D5">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Gelir" Type="Self.Gelir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Gelir">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeriBildi__gerib__5441852A">
+          <End Role="GeriBildirimTipi" Type="Self.GeriBildirimTipi" Multiplicity="1" />
+          <End Role="GeriBildirim" Type="Self.GeriBildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeriBildirimTipi">
+              <PropertyRef Name="geribildirim_tipi_id" />
+            </Principal>
+            <Dependent Role="GeriBildirim">
+              <PropertyRef Name="geribildirim_tipi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeriBildi__kulla__534D60F1">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="GeriBildirim" Type="Self.GeriBildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="GeriBildirim">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gider__kategori___59FA5E80">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Gider" Type="Self.Gider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Gider">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__kulla__403A8C7D">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="KullaniciAdresi" Type="Self.KullaniciAdresi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="KullaniciAdresi">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__rol_i__3C69FB99">
+          <End Role="Roller" Type="Self.Roller" Multiplicity="1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roller">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__rozet__3D5E1FD2">
+          <End Role="Rozetler" Type="Self.Rozetler" Multiplicity="0..1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rozetler">
+              <PropertyRef Name="rozet_id" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="rozet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loglar__islem_tu__5FB337D6">
+          <End Role="IslemTuru" Type="Self.IslemTuru" Multiplicity="1" />
+          <End Role="Loglar" Type="Self.Loglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IslemTuru">
+              <PropertyRef Name="islem_turu_id" />
+            </Principal>
+            <Dependent Role="Loglar">
+              <PropertyRef Name="islem_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loglar__kullanic__5EBF139D">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Loglar" Type="Self.Loglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="Loglar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proje__kategori___44FF419A">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Proje">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjeYoru__kulla__6383C8BA">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="ProjeYorumlari" Type="Self.ProjeYorumlari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="ProjeYorumlari">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjeYoru__proje__628FA481">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="ProjeYorumlari" Type="Self.ProjeYorumlari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="ProjeYorumlari">
+              <PropertyRef Name="proje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BagisYap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kullanici_id" Type="int" Mode="In" />
+          <Parameter Name="odeme_yontem_id" Type="int" Mode="In" />
+          <Parameter Name="proje_id" Type="int" Mode="In" />
+          <Parameter Name="bagis_miktari" Type="decimal" Mode="In" />
+          <Parameter Name="bagis_tarihi" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="KullaniciVeVerileriniSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kullanici_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MisafirKullaniciEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProjeSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="proje_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UyeEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="YedekAl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="BagisDBModelStoreContainer">
+          <EntitySet Name="Bagis" EntityType="Self.Bagis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gelir" EntityType="Self.Gelir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeriBildirim" EntityType="Self.GeriBildirim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeriBildirimTipi" EntityType="Self.GeriBildirimTipi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gider" EntityType="Self.Gider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IslemTuru" EntityType="Self.IslemTuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciAdresi" EntityType="Self.KullaniciAdresi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loglar" EntityType="Self.Loglar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdemeYontemi" EntityType="Self.OdemeYontemi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proje" EntityType="Self.Proje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjeKategori" EntityType="Self.ProjeKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjeYorumlari" EntityType="Self.ProjeYorumlari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roller" EntityType="Self.Roller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rozetler" EntityType="Self.Rozetler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yedekler" EntityType="Self.Yedekler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciLoginSorgu" EntityType="Self.KullaniciLoginSorgu" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KullaniciLoginSorgu].[kullanici_id] AS [kullanici_id], 
+    [KullaniciLoginSorgu].[e_mail] AS [e_mail], 
+    [KullaniciLoginSorgu].[telefon] AS [telefon], 
+    [KullaniciLoginSorgu].[ad_soyad] AS [ad_soyad], 
+    [KullaniciLoginSorgu].[ilce_adi] AS [ilce_adi], 
+    [KullaniciLoginSorgu].[sehir_adi] AS [sehir_adi], 
+    [KullaniciLoginSorgu].[sifre] AS [sifre], 
+    [KullaniciLoginSorgu].[rol_id] AS [rol_id]
+    FROM [dbo].[KullaniciLoginSorgu] AS [KullaniciLoginSorgu]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Bagis__kullanici__49C3F6B7" Association="Self.FK__Bagis__kullanici__49C3F6B7">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bagis__odeme_yon__4AB81AF0" Association="Self.FK__Bagis__odeme_yon__4AB81AF0">
+            <End Role="OdemeYontemi" EntitySet="OdemeYontemi" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bagis__proje_id__4BAC3F29" Association="Self.FK__Bagis__proje_id__4BAC3F29">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gelir__kategori___571DF1D5" Association="Self.FK__Gelir__kategori___571DF1D5">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Gelir" EntitySet="Gelir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeriBildi__gerib__5441852A" Association="Self.FK__GeriBildi__gerib__5441852A">
+            <End Role="GeriBildirimTipi" EntitySet="GeriBildirimTipi" />
+            <End Role="GeriBildirim" EntitySet="GeriBildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeriBildi__kulla__534D60F1" Association="Self.FK__GeriBildi__kulla__534D60F1">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="GeriBildirim" EntitySet="GeriBildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gider__kategori___59FA5E80" Association="Self.FK__Gider__kategori___59FA5E80">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Gider" EntitySet="Gider" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__kulla__403A8C7D" Association="Self.FK__Kullanici__kulla__403A8C7D">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KullaniciAdresi" EntitySet="KullaniciAdresi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__rol_i__3C69FB99" Association="Self.FK__Kullanici__rol_i__3C69FB99">
+            <End Role="Roller" EntitySet="Roller" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__rozet__3D5E1FD2" Association="Self.FK__Kullanici__rozet__3D5E1FD2">
+            <End Role="Rozetler" EntitySet="Rozetler" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loglar__islem_tu__5FB337D6" Association="Self.FK__Loglar__islem_tu__5FB337D6">
+            <End Role="IslemTuru" EntitySet="IslemTuru" />
+            <End Role="Loglar" EntitySet="Loglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loglar__kullanic__5EBF139D" Association="Self.FK__Loglar__kullanic__5EBF139D">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Loglar" EntitySet="Loglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proje__kategori___44FF419A" Association="Self.FK__Proje__kategori___44FF419A">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Proje" EntitySet="Proje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjeYoru__kulla__6383C8BA" Association="Self.FK__ProjeYoru__kulla__6383C8BA">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="ProjeYorumlari" EntitySet="ProjeYorumlari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjeYoru__proje__628FA481" Association="Self.FK__ProjeYoru__proje__628FA481">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="ProjeYorumlari" EntitySet="ProjeYorumlari" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BagisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bagis">
+          <Key>
+            <PropertyRef Name="bagis_id" />
+          </Key>
+          <Property Name="bagis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="odeme_yontem_id" Type="Int32" Nullable="false" />
+          <Property Name="proje_id" Type="Int32" Nullable="false" />
+          <Property Name="bagis_miktari" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="bagis_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__Bagis__kullanici__49C3F6B7" FromRole="Bagis" ToRole="Kullanicilar" />
+          <NavigationProperty Name="OdemeYontemi" Relationship="Self.FK__Bagis__odeme_yon__4AB81AF0" FromRole="Bagis" ToRole="OdemeYontemi" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK__Bagis__proje_id__4BAC3F29" FromRole="Bagis" ToRole="Proje" />
+        </EntityType>
+        <EntityType Name="Gelir">
+          <Key>
+            <PropertyRef Name="gelir_id" />
+          </Key>
+          <Property Name="gelir_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_id" Type="Int32" Nullable="false" />
+          <Property Name="gelir_miktari" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="gelir_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProjeKategori" Relationship="Self.FK__Gelir__kategori___571DF1D5" FromRole="Gelir" ToRole="ProjeKategori" />
+        </EntityType>
+        <EntityType Name="GeriBildirim">
+          <Key>
+            <PropertyRef Name="geribildirim_id" />
+          </Key>
+          <Property Name="geribildirim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="geribildirim_tipi_id" Type="Int32" Nullable="false" />
+          <Property Name="geribildirim_mesaj" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="geribildirim_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GeriBildirimTipi" Relationship="Self.FK__GeriBildi__gerib__5441852A" FromRole="GeriBildirim" ToRole="GeriBildirimTipi" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__GeriBildi__kulla__534D60F1" FromRole="GeriBildirim" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="GeriBildirimTipi">
+          <Key>
+            <PropertyRef Name="geribildirim_tipi_id" />
+          </Key>
+          <Property Name="geribildirim_tipi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geribildirim_adi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GeriBildirim" Relationship="Self.FK__GeriBildi__gerib__5441852A" FromRole="GeriBildirimTipi" ToRole="GeriBildirim" />
+        </EntityType>
+        <EntityType Name="Gider">
+          <Key>
+            <PropertyRef Name="gider_id" />
+          </Key>
+          <Property Name="gider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_id" Type="Int32" Nullable="false" />
+          <Property Name="gider_miktari" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="gider_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProjeKategori" Relationship="Self.FK__Gider__kategori___59FA5E80" FromRole="Gider" ToRole="ProjeKategori" />
+        </EntityType>
+        <EntityType Name="IslemTuru">
+          <Key>
+            <PropertyRef Name="islem_turu_id" />
+          </Key>
+          <Property Name="islem_turu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="islem_turu_adi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Loglar" Relationship="Self.FK__Loglar__islem_tu__5FB337D6" FromRole="IslemTuru" ToRole="Loglar" />
+        </EntityType>
+        <EntityType Name="KullaniciAdresi">
+          <Key>
+            <PropertyRef Name="adres_id" />
+          </Key>
+          <Property Name="adres_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="sehir_adi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilce_adi" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__Kullanici__kulla__403A8C7D" FromRole="KullaniciAdresi" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="rozet_id" Type="Int32" />
+          <Property Name="ad_soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="e_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="kayit_tarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Bagis" Relationship="Self.FK__Bagis__kullanici__49C3F6B7" FromRole="Kullanicilar" ToRole="Bagis" />
+          <NavigationProperty Name="GeriBildirim" Relationship="Self.FK__GeriBildi__kulla__534D60F1" FromRole="Kullanicilar" ToRole="GeriBildirim" />
+          <NavigationProperty Name="KullaniciAdresi" Relationship="Self.FK__Kullanici__kulla__403A8C7D" FromRole="Kullanicilar" ToRole="KullaniciAdresi" />
+          <NavigationProperty Name="Roller" Relationship="Self.FK__Kullanici__rol_i__3C69FB99" FromRole="Kullanicilar" ToRole="Roller" />
+          <NavigationProperty Name="Rozetler" Relationship="Self.FK__Kullanici__rozet__3D5E1FD2" FromRole="Kullanicilar" ToRole="Rozetler" />
+          <NavigationProperty Name="Loglar" Relationship="Self.FK__Loglar__kullanic__5EBF139D" FromRole="Kullanicilar" ToRole="Loglar" />
+          <NavigationProperty Name="ProjeYorumlari" Relationship="Self.FK__ProjeYoru__kulla__6383C8BA" FromRole="Kullanicilar" ToRole="ProjeYorumlari" />
+        </EntityType>
+        <EntityType Name="Loglar">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="islem_turu_id" Type="Int32" Nullable="false" />
+          <Property Name="islem_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="IslemTuru" Relationship="Self.FK__Loglar__islem_tu__5FB337D6" FromRole="Loglar" ToRole="IslemTuru" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__Loglar__kullanic__5EBF139D" FromRole="Loglar" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="OdemeYontemi">
+          <Key>
+            <PropertyRef Name="odeme_yontem_id" />
+          </Key>
+          <Property Name="odeme_yontem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odeme_yontem_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bagis" Relationship="Self.FK__Bagis__odeme_yon__4AB81AF0" FromRole="OdemeYontemi" ToRole="Bagis" />
+        </EntityType>
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="proje_id" />
+          </Key>
+          <Property Name="proje_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_id" Type="Int32" Nullable="false" />
+          <Property Name="proje_ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="proje_aciklamasi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="proje_resim_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bagis" Relationship="Self.FK__Bagis__proje_id__4BAC3F29" FromRole="Proje" ToRole="Bagis" />
+          <NavigationProperty Name="ProjeKategori" Relationship="Self.FK__Proje__kategori___44FF419A" FromRole="Proje" ToRole="ProjeKategori" />
+          <NavigationProperty Name="ProjeYorumlari" Relationship="Self.FK__ProjeYoru__proje__628FA481" FromRole="Proje" ToRole="ProjeYorumlari" />
+        </EntityType>
+        <EntityType Name="ProjeKategori">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gelir" Relationship="Self.FK__Gelir__kategori___571DF1D5" FromRole="ProjeKategori" ToRole="Gelir" />
+          <NavigationProperty Name="Gider" Relationship="Self.FK__Gider__kategori___59FA5E80" FromRole="ProjeKategori" ToRole="Gider" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK__Proje__kategori___44FF419A" FromRole="ProjeKategori" ToRole="Proje" />
+        </EntityType>
+        <EntityType Name="ProjeYorumlari">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="proje_id" Type="Int32" Nullable="false" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="yorum_metni" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="yorum_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__ProjeYoru__kulla__6383C8BA" FromRole="ProjeYorumlari" ToRole="Kullanicilar" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK__ProjeYoru__proje__628FA481" FromRole="ProjeYorumlari" ToRole="Proje" />
+        </EntityType>
+        <EntityType Name="Roller">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="rol_ad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__Kullanici__rol_i__3C69FB99" FromRole="Roller" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="Rozetler">
+          <Key>
+            <PropertyRef Name="rozet_id" />
+          </Key>
+          <Property Name="rozet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rozet_ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK__Kullanici__rozet__3D5E1FD2" FromRole="Rozetler" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yedekler">
+          <Key>
+            <PropertyRef Name="YedekID" />
+          </Key>
+          <Property Name="YedekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VeritabanıAdı" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="YedekYolu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="YedeklemeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="yonetici_id" />
+          </Key>
+          <Property Name="yonetici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yonetici_ad_soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yonetici_sifre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yonetici_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yonetici_telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciLoginSorgu">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+            <PropertyRef Name="e_mail" />
+            <PropertyRef Name="telefon" />
+            <PropertyRef Name="ad_soyad" />
+            <PropertyRef Name="ilce_adi" />
+            <PropertyRef Name="sehir_adi" />
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="e_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ad_soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilce_adi" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sehir_adi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bagis__kullanici__49C3F6B7">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bagis__odeme_yon__4AB81AF0">
+          <End Role="OdemeYontemi" Type="Self.OdemeYontemi" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeYontemi">
+              <PropertyRef Name="odeme_yontem_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="odeme_yontem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bagis__proje_id__4BAC3F29">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="Bagis" Type="Self.Bagis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="Bagis">
+              <PropertyRef Name="proje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gelir__kategori___571DF1D5">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Gelir" Type="Self.Gelir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Gelir">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeriBildi__gerib__5441852A">
+          <End Role="GeriBildirimTipi" Type="Self.GeriBildirimTipi" Multiplicity="1" />
+          <End Role="GeriBildirim" Type="Self.GeriBildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeriBildirimTipi">
+              <PropertyRef Name="geribildirim_tipi_id" />
+            </Principal>
+            <Dependent Role="GeriBildirim">
+              <PropertyRef Name="geribildirim_tipi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeriBildi__kulla__534D60F1">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="GeriBildirim" Type="Self.GeriBildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="GeriBildirim">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gider__kategori___59FA5E80">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Gider" Type="Self.Gider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Gider">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loglar__islem_tu__5FB337D6">
+          <End Role="IslemTuru" Type="Self.IslemTuru" Multiplicity="1" />
+          <End Role="Loglar" Type="Self.Loglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IslemTuru">
+              <PropertyRef Name="islem_turu_id" />
+            </Principal>
+            <Dependent Role="Loglar">
+              <PropertyRef Name="islem_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__kulla__403A8C7D">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="KullaniciAdresi" Type="Self.KullaniciAdresi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="KullaniciAdresi">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__rol_i__3C69FB99">
+          <End Role="Roller" Type="Self.Roller" Multiplicity="1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roller">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__rozet__3D5E1FD2">
+          <End Role="Rozetler" Type="Self.Rozetler" Multiplicity="0..1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rozetler">
+              <PropertyRef Name="rozet_id" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="rozet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loglar__kullanic__5EBF139D">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Loglar" Type="Self.Loglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="Loglar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjeYoru__kulla__6383C8BA">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="ProjeYorumlari" Type="Self.ProjeYorumlari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="kullanici_id" />
+            </Principal>
+            <Dependent Role="ProjeYorumlari">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proje__kategori___44FF419A">
+          <End Role="ProjeKategori" Type="Self.ProjeKategori" Multiplicity="1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjeKategori">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Proje">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjeYoru__proje__628FA481">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="ProjeYorumlari" Type="Self.ProjeYorumlari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="ProjeYorumlari">
+              <PropertyRef Name="proje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BagisDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bagis" EntityType="Self.Bagis" />
+          <EntitySet Name="Gelir" EntityType="Self.Gelir" />
+          <EntitySet Name="GeriBildirim" EntityType="Self.GeriBildirim" />
+          <EntitySet Name="GeriBildirimTipi" EntityType="Self.GeriBildirimTipi" />
+          <EntitySet Name="Gider" EntityType="Self.Gider" />
+          <EntitySet Name="IslemTuru" EntityType="Self.IslemTuru" />
+          <EntitySet Name="KullaniciAdresi" EntityType="Self.KullaniciAdresi" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+          <EntitySet Name="Loglar" EntityType="Self.Loglar" />
+          <EntitySet Name="OdemeYontemi" EntityType="Self.OdemeYontemi" />
+          <EntitySet Name="Proje" EntityType="Self.Proje" />
+          <EntitySet Name="ProjeKategori" EntityType="Self.ProjeKategori" />
+          <EntitySet Name="ProjeYorumlari" EntityType="Self.ProjeYorumlari" />
+          <EntitySet Name="Roller" EntityType="Self.Roller" />
+          <EntitySet Name="Rozetler" EntityType="Self.Rozetler" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Yedekler" EntityType="Self.Yedekler" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" />
+          <EntitySet Name="KullaniciLoginSorgu" EntityType="Self.KullaniciLoginSorgu" />
+          <AssociationSet Name="FK__Bagis__kullanici__49C3F6B7" Association="Self.FK__Bagis__kullanici__49C3F6B7">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bagis__odeme_yon__4AB81AF0" Association="Self.FK__Bagis__odeme_yon__4AB81AF0">
+            <End Role="OdemeYontemi" EntitySet="OdemeYontemi" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bagis__proje_id__4BAC3F29" Association="Self.FK__Bagis__proje_id__4BAC3F29">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="Bagis" EntitySet="Bagis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gelir__kategori___571DF1D5" Association="Self.FK__Gelir__kategori___571DF1D5">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Gelir" EntitySet="Gelir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeriBildi__gerib__5441852A" Association="Self.FK__GeriBildi__gerib__5441852A">
+            <End Role="GeriBildirimTipi" EntitySet="GeriBildirimTipi" />
+            <End Role="GeriBildirim" EntitySet="GeriBildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeriBildi__kulla__534D60F1" Association="Self.FK__GeriBildi__kulla__534D60F1">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="GeriBildirim" EntitySet="GeriBildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gider__kategori___59FA5E80" Association="Self.FK__Gider__kategori___59FA5E80">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Gider" EntitySet="Gider" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loglar__islem_tu__5FB337D6" Association="Self.FK__Loglar__islem_tu__5FB337D6">
+            <End Role="IslemTuru" EntitySet="IslemTuru" />
+            <End Role="Loglar" EntitySet="Loglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__kulla__403A8C7D" Association="Self.FK__Kullanici__kulla__403A8C7D">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KullaniciAdresi" EntitySet="KullaniciAdresi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__rol_i__3C69FB99" Association="Self.FK__Kullanici__rol_i__3C69FB99">
+            <End Role="Roller" EntitySet="Roller" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__rozet__3D5E1FD2" Association="Self.FK__Kullanici__rozet__3D5E1FD2">
+            <End Role="Rozetler" EntitySet="Rozetler" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loglar__kullanic__5EBF139D" Association="Self.FK__Loglar__kullanic__5EBF139D">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Loglar" EntitySet="Loglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjeYoru__kulla__6383C8BA" Association="Self.FK__ProjeYoru__kulla__6383C8BA">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="ProjeYorumlari" EntitySet="ProjeYorumlari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proje__kategori___44FF419A" Association="Self.FK__Proje__kategori___44FF419A">
+            <End Role="ProjeKategori" EntitySet="ProjeKategori" />
+            <End Role="Proje" EntitySet="Proje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjeYoru__proje__628FA481" Association="Self.FK__ProjeYoru__proje__628FA481">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="ProjeYorumlari" EntitySet="ProjeYorumlari" />
+          </AssociationSet>
+          <FunctionImport Name="BagisYap">
+            <Parameter Name="kullanici_id" Mode="In" Type="Int32" />
+            <Parameter Name="odeme_yontem_id" Mode="In" Type="Int32" />
+            <Parameter Name="proje_id" Mode="In" Type="Int32" />
+            <Parameter Name="bagis_miktari" Mode="In" Type="Decimal" />
+            <Parameter Name="bagis_tarihi" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="KullaniciVeVerileriniSil">
+          <Parameter Name="kullanici_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MisafirKullaniciEkle" />
+          <FunctionImport Name="ProjeSil">
+          <Parameter Name="proje_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BagisDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BagisDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UyeEkle" />
+          <FunctionImport Name="YedekAl" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BagisDBModelStoreContainer" CdmEntityContainer="BagisDBEntities">
+          <EntitySetMapping Name="Bagis">
+            <EntityTypeMapping TypeName="BagisDBModel.Bagis">
+              <MappingFragment StoreEntitySet="Bagis">
+                <ScalarProperty Name="bagis_id" ColumnName="bagis_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="odeme_yontem_id" ColumnName="odeme_yontem_id" />
+                <ScalarProperty Name="proje_id" ColumnName="proje_id" />
+                <ScalarProperty Name="bagis_miktari" ColumnName="bagis_miktari" />
+                <ScalarProperty Name="bagis_tarihi" ColumnName="bagis_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gelir">
+            <EntityTypeMapping TypeName="BagisDBModel.Gelir">
+              <MappingFragment StoreEntitySet="Gelir">
+                <ScalarProperty Name="gelir_id" ColumnName="gelir_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="gelir_miktari" ColumnName="gelir_miktari" />
+                <ScalarProperty Name="gelir_tarihi" ColumnName="gelir_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeriBildirim">
+            <EntityTypeMapping TypeName="BagisDBModel.GeriBildirim">
+              <MappingFragment StoreEntitySet="GeriBildirim">
+                <ScalarProperty Name="geribildirim_id" ColumnName="geribildirim_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="geribildirim_tipi_id" ColumnName="geribildirim_tipi_id" />
+                <ScalarProperty Name="geribildirim_mesaj" ColumnName="geribildirim_mesaj" />
+                <ScalarProperty Name="geribildirim_tarihi" ColumnName="geribildirim_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeriBildirimTipi">
+            <EntityTypeMapping TypeName="BagisDBModel.GeriBildirimTipi">
+              <MappingFragment StoreEntitySet="GeriBildirimTipi">
+                <ScalarProperty Name="geribildirim_tipi_id" ColumnName="geribildirim_tipi_id" />
+                <ScalarProperty Name="geribildirim_adi" ColumnName="geribildirim_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gider">
+            <EntityTypeMapping TypeName="BagisDBModel.Gider">
+              <MappingFragment StoreEntitySet="Gider">
+                <ScalarProperty Name="gider_id" ColumnName="gider_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="gider_miktari" ColumnName="gider_miktari" />
+                <ScalarProperty Name="gider_tarihi" ColumnName="gider_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IslemTuru">
+            <EntityTypeMapping TypeName="BagisDBModel.IslemTuru">
+              <MappingFragment StoreEntitySet="IslemTuru">
+                <ScalarProperty Name="islem_turu_id" ColumnName="islem_turu_id" />
+                <ScalarProperty Name="islem_turu_adi" ColumnName="islem_turu_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciAdresi">
+            <EntityTypeMapping TypeName="BagisDBModel.KullaniciAdresi">
+              <MappingFragment StoreEntitySet="KullaniciAdresi">
+                <ScalarProperty Name="adres_id" ColumnName="adres_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="sehir_adi" ColumnName="sehir_adi" />
+                <ScalarProperty Name="ilce_adi" ColumnName="ilce_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="BagisDBModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="rozet_id" ColumnName="rozet_id" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="kayit_tarihi" ColumnName="kayit_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loglar">
+            <EntityTypeMapping TypeName="BagisDBModel.Loglar">
+              <MappingFragment StoreEntitySet="Loglar">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="islem_turu_id" ColumnName="islem_turu_id" />
+                <ScalarProperty Name="islem_tarihi" ColumnName="islem_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdemeYontemi">
+            <EntityTypeMapping TypeName="BagisDBModel.OdemeYontemi">
+              <MappingFragment StoreEntitySet="OdemeYontemi">
+                <ScalarProperty Name="odeme_yontem_id" ColumnName="odeme_yontem_id" />
+                <ScalarProperty Name="odeme_yontem_adi" ColumnName="odeme_yontem_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proje">
+            <EntityTypeMapping TypeName="BagisDBModel.Proje">
+              <MappingFragment StoreEntitySet="Proje">
+                <ScalarProperty Name="proje_id" ColumnName="proje_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="proje_ad" ColumnName="proje_ad" />
+                <ScalarProperty Name="proje_aciklamasi" ColumnName="proje_aciklamasi" />
+                <ScalarProperty Name="proje_resim_link" ColumnName="proje_resim_link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjeKategori">
+            <EntityTypeMapping TypeName="BagisDBModel.ProjeKategori">
+              <MappingFragment StoreEntitySet="ProjeKategori">
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjeYorumlari">
+            <EntityTypeMapping TypeName="BagisDBModel.ProjeYorumlari">
+              <MappingFragment StoreEntitySet="ProjeYorumlari">
+                <ScalarProperty Name="yorum_id" ColumnName="yorum_id" />
+                <ScalarProperty Name="proje_id" ColumnName="proje_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="yorum_metni" ColumnName="yorum_metni" />
+                <ScalarProperty Name="yorum_tarihi" ColumnName="yorum_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roller">
+            <EntityTypeMapping TypeName="BagisDBModel.Roller">
+              <MappingFragment StoreEntitySet="Roller">
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="rol_ad" ColumnName="rol_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rozetler">
+            <EntityTypeMapping TypeName="BagisDBModel.Rozetler">
+              <MappingFragment StoreEntitySet="Rozetler">
+                <ScalarProperty Name="rozet_id" ColumnName="rozet_id" />
+                <ScalarProperty Name="rozet_ad" ColumnName="rozet_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BagisDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yedekler">
+            <EntityTypeMapping TypeName="BagisDBModel.Yedekler">
+              <MappingFragment StoreEntitySet="Yedekler">
+                <ScalarProperty Name="YedekID" ColumnName="YedekID" />
+                <ScalarProperty Name="VeritabanıAdı" ColumnName="VeritabanıAdı" />
+                <ScalarProperty Name="YedekYolu" ColumnName="YedekYolu" />
+                <ScalarProperty Name="YedeklemeTarihi" ColumnName="YedeklemeTarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yonetici">
+            <EntityTypeMapping TypeName="BagisDBModel.Yonetici">
+              <MappingFragment StoreEntitySet="Yonetici">
+                <ScalarProperty Name="yonetici_id" ColumnName="yonetici_id" />
+                <ScalarProperty Name="yonetici_ad_soyad" ColumnName="yonetici_ad_soyad" />
+                <ScalarProperty Name="yonetici_sifre" ColumnName="yonetici_sifre" />
+                <ScalarProperty Name="yonetici_mail" ColumnName="yonetici_mail" />
+                <ScalarProperty Name="yonetici_telefon" ColumnName="yonetici_telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciLoginSorgu">
+            <EntityTypeMapping TypeName="BagisDBModel.KullaniciLoginSorgu">
+              <MappingFragment StoreEntitySet="KullaniciLoginSorgu">
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="ilce_adi" ColumnName="ilce_adi" />
+                <ScalarProperty Name="sehir_adi" ColumnName="sehir_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BagisYap" FunctionName="BagisDBModel.Store.BagisYap" />
+          <FunctionImportMapping FunctionImportName="KullaniciVeVerileriniSil" FunctionName="BagisDBModel.Store.KullaniciVeVerileriniSil" />
+          <FunctionImportMapping FunctionImportName="MisafirKullaniciEkle" FunctionName="BagisDBModel.Store.MisafirKullaniciEkle" />
+          <FunctionImportMapping FunctionImportName="ProjeSil" FunctionName="BagisDBModel.Store.ProjeSil" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BagisDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BagisDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BagisDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BagisDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BagisDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BagisDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BagisDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BagisDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BagisDBModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UyeEkle" FunctionName="BagisDBModel.Store.UyeEkle" />
+          <FunctionImportMapping FunctionImportName="YedekAl" FunctionName="BagisDBModel.Store.YedekAl" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

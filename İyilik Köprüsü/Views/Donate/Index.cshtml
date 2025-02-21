@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Bağış Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center my-4">Bağış Yap</h2>
+
+<link href="~/Content/styleDonate.css" rel="stylesheet"> 
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="/Donate/SubmitDonation" method="post">
+                        <!-- Kategori seçme kısmı -->
+                        <div class="form-group mb-3">
+                            <label for="kategori_id">Kategori Seç</label>
+                            @Html.DropDownList("kategori_id",
+                                new List<SelectListItem> {
+                                    new SelectListItem { Text = "Kategori Seçiniz", Value = "", Selected = true },
+                                    new SelectListItem { Text = "Tümünü Göster", Value = "0" }
+                                }.Concat((SelectList)ViewBag.Kategoriler),
+                                new { @class = "form-control", id = "kategoriDropdown" })
+                        </div>
+
+                        <!-- Proje seçme kısmı -->
+                        <div class="form-group mb-3">
+                            <label for="proje_id">Proje Seç</label>
+                            @Html.DropDownList("proje_id",
+                                new List<SelectListItem> {
+                                    new SelectListItem { Text = "Önce kategori seçiniz", Value = "", Selected = true }
+                                }.Concat((SelectList)ViewBag.Projeler),
+                                new { @class = "form-control", id = "projeDropdown" })
+                        </div>
+
+                        <!-- Bağış Miktarı -->
+                        <div class="form-group mb-3">
+                            <label for="bagis_miktari">Bağış Miktarı</label>
+                            <input type="number" id="bagisMiktari" name="bagis_miktari" class="form-control" placeholder="Bağış miktarınızı giriniz" required min="1">
+                        </div>
+
+                        <!-- Kullanıcı Bilgileri -->
+                        <fieldset @if (User.Identity.IsAuthenticated) { <text> disabled="true" </text> }>
+                            <div class="form-group mb-3">
+                                <label for="adSoyad">Ad Soyad</label>
+                                <input type="text" id="adSoyad" name="ad_soyad" class="form-control" placeholder="Adınızı ve Soyadınızı giriniz" value="@ViewBag.UserName" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="email">E-Posta</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="E-posta adresinizi giriniz" value="@ViewBag.UserEmail" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="telefon">Telefon</label>
+                                <input type="tel" id="telefon" name="telefon" class="form-control" placeholder="Telefon numaranızı giriniz" value="@ViewBag.UserPhone" required>
+                            </div>
+                        </fieldset>
+
+                        <!-- Bağış yap Butonu -->
+                        <button type="submit" class="btn btn-success w-100">Bağış Yap</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proje Detayları -->
+        <div class="col-md-6">
+            <div id="projeDetay" class="card shadow-sm d-none">
+                <div class="card-body text-center">
+                    <h5 id="projeAd" class="card-title"></h5>
+                    <img id="projeResim" src="" alt="Proje Resmi" class="img-fluid mb-3">
+                    <p id="projeAciklama" class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/sayfa_scriptler/scriptDonate.js"></script>
+
