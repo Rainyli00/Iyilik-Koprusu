@@ -1,7 +1,7 @@
 # İyilik Köprüsü
 
 <div align="center">
-  <h1>🌟 İyilik Köprüsü (Bridge of Goodness)</h1>
+  <h1>🌟 İyilik Köprüsü </h1>
   <p><b>Kullanıcılar ile ihtiyaç sahipleri arasında köprü kuran şeffaf ve güvenilir bağış platformu.</b></p>
 
   [![ASP.NET MVC](https://img.shields.io/badge/ASP.NET_MVC-.NET_Framework_4.8.1-blue.svg)](https://dotnet.microsoft.com/)
