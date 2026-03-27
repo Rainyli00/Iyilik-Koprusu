@@ -4,7 +4,6 @@
 
   [![ASP.NET MVC](https://img.shields.io/badge/ASP.NET_MVC-.NET_Framework_4.8.1-blue.svg?logo=dotnet)](https://dotnet.microsoft.com/)
   [![Entity Framework](https://img.shields.io/badge/Entity_Framework-Database_First-orange.svg?logo=nuget)](https://learn.microsoft.com/en-us/ef/)
-  [![License](https://img.shields.io/badge/License-Open_Source-green.svg)](#-lisans)
 </div>
 
 <br/>
@@ -68,3 +67,58 @@
 └── 📁 Scripts/sayfa_scriptler/
     ├── scriptDonate.js
     └── scriptAdminMainAndKullanici.js
+```
+
+---
+
+## 🚀 Kurulum ve Çalıştırma
+
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
+
+### 📌 Gereksinimler
+- **Visual Studio 2019 / 2022** *(ASP.NET ve Web Geliştirme iş yükü kurulu olmalı)*
+- **Microsoft SQL Server Management Studio (SSMS)**
+
+### ⚙️ Adımlar
+
+1. **Projeyi Klonlayın:**
+   ```bash
+   git clone [https://github.com/Rainyli00/Iyilik-Koprusu.git](https://github.com/Rainyli00/Iyilik-Koprusu.git)
+   ```
+2. **Projeyi Açın:** İndirdiğiniz dizindeki `İyilik Köprüsü.sln` çözüm dosyasını Visual Studio ile açın.
+3. **Veritabanını Hazırlayın:**
+   Proje Database First yaklaşımını kullanır. SQL Server'da `BagisDB` adında bir veritabanı oluşturun ve `Models/BagisDB.edmx` dosyası üzerinden modelinizi güncelleyin *(Update Model from Database)*.
+4. **Bağlantı Dizesini (Connection String) Ayarlayın:**
+   Ana dizindeki `Web.config` dosyasını açın. `<connectionStrings>` altındaki `BagisDBEntities` değerini kendi yerel SQL Server bilgilerinize göre düzenleyin:
+   ```xml
+   Data Source=SUNUCU_ADINIZ; Initial Catalog=BagisDB; Integrated Security=True;
+   ```
+5. **Derleyin ve Başlatın:**
+   Visual Studio'da **F5** tuşuna basarak projeyi derleyin ve tarayıcınızda başlatın.
+
+---
+
+## 🗺️ Rota ve Başlangıç Noktaları
+
+- **Varsayılan Rota:** `/{controller}/{action}/{id}`
+- **🏠 Açılış Sayfası:** `Home/Index`
+- **👤 Kullanıcı Girişi:** `Login/Index`
+- **🔐 Yönetici Girişi:** `AdminLogin/Index`
+
+---
+
+## 🤝 Katkıda Bulunma
+
+Bu proje açık kaynaklıdır ve her türlü katkıya (Pull Request, özellik önerisi, hata bildirimi) açıktır. Katkıda bulunmak isterseniz:
+
+1. Bu depoyu **Fork**'layın.
+2. Yeni özelliğiniz için bir dal oluşturun (`git checkout -b feature/YeniOzellik`).
+3. Değişikliklerinizi commit edin (`git commit -m 'Harika bir özellik eklendi'`).
+4. Dalınızı uzak sunucuya gönderin (`git push origin feature/YeniOzellik`).
+5. Bir **Pull Request (PR)** oluşturun.
+
+---
+
+## 📜 Lisans
+
+Bu proje portfolyo amaçlı geliştirilmiş olup eğitim ve gösterim hedeflenerek tasarlanmıştır. Proje ile ilgili her türlü sorunuz veya geri bildiriminiz için repoya issue açabilirsiniz!
