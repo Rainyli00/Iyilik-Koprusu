@@ -71,6 +71,15 @@
 
 ---
 
+## 🗺️ Rota ve Başlangıç Noktaları
+
+- **Varsayılan Rota:** `/{controller}/{action}/{id}`
+- **🏠 Açılış Sayfası:** `Home/Index`
+- **👤 Kullanıcı Girişi:** `Login/Index`
+- **🔐 Yönetici Girişi:** `AdminLogin/Index`
+
+---
+
 ## 🚀 Kurulum ve Çalıştırma
 
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
@@ -98,24 +107,9 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip 
 
 ---
 
-## 🗺️ Rota ve Başlangıç Noktaları
-
-- **Varsayılan Rota:** `/{controller}/{action}/{id}`
-- **🏠 Açılış Sayfası:** `Home/Index`
-- **👤 Kullanıcı Girişi:** `Login/Index`
-- **🔐 Yönetici Girişi:** `AdminLogin/Index`
-
----
-
 ## 🤝 Katkıda Bulunma
 
-Bu proje açık kaynaklıdır ve her türlü katkıya (Pull Request, özellik önerisi, hata bildirimi) açıktır. Katkıda bulunmak isterseniz:
-
-1. Bu depoyu **Fork**'layın.
-2. Yeni özelliğiniz için bir dal oluşturun (`git checkout -b feature/YeniOzellik`).
-3. Değişikliklerinizi commit edin (`git commit -m 'Harika bir özellik eklendi'`).
-4. Dalınızı uzak sunucuya gönderin (`git push origin feature/YeniOzellik`).
-5. Bir **Pull Request (PR)** oluşturun.
+Bu proje açık kaynaklıdır ve her türlü katkıya (Pull Request, özellik önerisi, hata bildirimi) açıktır.
 
 ---
 
