@@ -113,6 +113,6 @@ Bu proje açık kaynaklıdır ve her türlü katkıya (Pull Request, özellik ö
 
 ---
 
-## 📜 Lisans
+## 📄 Lisans
 
-Bu proje portfolyo amaçlı geliştirilmiş olup eğitim ve gösterim hedeflenerek tasarlanmıştır. Proje ile ilgili her türlü sorunuz veya geri bildiriminiz için repoya issue açabilirsiniz!
+Bu proje eğitim amaçlı geliştirilmiştir.
