@@ -19,13 +19,13 @@
 
 ## ✨ Temel Özellikler
 
-### 👤 Kullanıcı Modülü (Frontend)
+### 👤 Kullanıcı Modülü 
 - **Güvenli Üyelik Sistemi:** Kullanıcıların sisteme kayıt olması ve kendi hesaplarına giriş yapabilmesi.
 - **Kategorize Edilmiş Bağışlar:** Kullanıcıların gıda, eğitim, barınma gibi belirli kampanyalara hedeflenmiş bağış yapabilmesi.
 - **Güvenli Ödeme Ekranı:** Kredi kartı arayüzü ile bağış ödemesinin yapılması ve sepet işlemleri (`Donate/Odeme`).
 - **Şeffaflık Panosu:** Sistemde son yapılan bağışların (**SonBagisModel**) listelenmesi ve güncel kampanya durumlarının görüntülenmesi.
 
-### 🛡️ Yönetici Modülü (Admin Panel)
+### 🛡️ Yönetici Modülü 
 - **Gelişmiş Dashboard:** Toplam üye sayısı, toplanan toplam bağış miktarı ve anlık **Kasa (Net Bakiye: Gelir - Gider)** istatistiklerinin takibi.
 - **Dinamik Grafik ve Raporlamalar:** Chart aracılığıyla gelirlerin kategorilere göre (Eğitim, Sağlık vb.) oransal dağılımının izlenmesi.
 - **Gelir ve Gider Yönetimi:** Sisteme giren her bir bağışın ve dernek kasasından yapılan masrafların/yardımların veritabanına işlenmesi.
