@@ -17,19 +17,26 @@
 
 ---
 
-## ✨ Temel Özellikler
+## Özellikler
 
-### 👤 Kullanıcı Modülü 
-- **Güvenli Üyelik Sistemi:** Kullanıcıların sisteme kayıt olması ve kendi hesaplarına giriş yapabilmesi.
-- **Kategorize Edilmiş Bağışlar:** Kullanıcıların gıda, eğitim, barınma gibi belirli kampanyalara hedeflenmiş bağış yapabilmesi.
-- **Güvenli Ödeme Ekranı:** Kredi kartı arayüzü ile bağış ödemesinin yapılması ve sepet işlemleri (`Donate/Odeme`).
-- **Şeffaflık Panosu:** Sistemde son yapılan bağışların (**SonBagisModel**) listelenmesi ve güncel kampanya durumlarının görüntülenmesi.
+### Kullanıcı Tarafı
+- Üyelik ve oturum (`Session`) yönetimi
+- Kategoriye göre proje filtreleyerek bağış yapma
+- Misafir bağış akışı (oturum yoksa misafir kullanıcı)
+- Hesap özeti ve son bağışlar
+- Bağış geçmişi görüntüleme
+- Projelere yorum gönderme
+- Geri bildirim gönderme
 
-### 🛡️ Yönetici Modülü 
-- **Gelişmiş Dashboard:** Toplam üye sayısı, toplanan toplam bağış miktarı ve anlık **Kasa (Net Bakiye: Gelir - Gider)** istatistiklerinin takibi.
-- **Dinamik Grafik ve Raporlamalar:** Chart aracılığıyla gelirlerin kategorilere göre (Eğitim, Sağlık vb.) oransal dağılımının izlenmesi.
-- **Gelir ve Gider Yönetimi:** Sisteme giren her bir bağışın ve dernek kasasından yapılan masrafların/yardımların veritabanına işlenmesi.
-- **Güvenli Oturum (Session) Yönetimi:** `AdminLoginController` üzerinden yöneticilerin güvenli girişi, Session kontrolü ve yetkilendirme işlemleri.
+### Yönetici Paneli
+- Dashboard: toplam kullanıcı, toplam bağış, kasa (gelir-gider)
+- Kategori bazlı bağış grafiği
+- Kullanıcı/proje/yönetici CRUD işlemleri
+- Log kayıtlarını filtreleyerek görüntüleme
+- Bağış listesi görüntüleme
+- Gider ekleme
+- Geri bildirim ve proje yorumları listeleme
+- SQL Agent job tetikleyerek yedek başlatma Veritabanı yedekleme sürecini tetikleme.
 
 ---
 
@@ -44,17 +51,29 @@
 **Frontend (İstemci Tarafı)**
 * **Diller:** HTML5, CSS3, JavaScript
 * **View Engine:** Razor (`.cshtml`)
-* **Kütüphaneler:** jQuery, Bootstrap, Özelleştirilmiş Scriptler (`scriptAdminMainAndKullanici.js`)
+* **Kütüphaneler:** jQuery, Bootstrap, Chart.js
 
 ---
 
-## 📂 Proje Mimarisi (MVC)
+## Mimari ve Klasör Yapısı
 
-Proje, katmanların birbirine olan bağımlılığını azaltan ve kodun okunabilirliğini artıran Standart MVC Design Pattern ile tasarlanmıştır:
-- **Models:** Veritabanı tablolarının nesne karşılıkları (`BagisDBEntities`, `BagisModel`, `SonBagisModel`).
-- **Views:** Kullanıcılara ve yöneticilere sunulan arayüz sayfaları (`Donate/Index.cshtml`, `AdminLogin/Index.cshtml` vb.).
-- **Controllers:** İş mantığının yönetildiği sınıflar (`AdminHomeController`, `AdminLoginController`, `DonateController` vb.)
-- **Scripts:** Sayfa bazlı özel JavaScript dosyaları.
+- `Controllers/`
+  - `HomeController`: Anasayfa
+  - `LoginController`: Kullanıcı giriş/kayıt/çıkış
+  - `DonateController`: Bağış süreci (kategori/proje seçimi + ödeme)
+  - `AccountController`: Hesap özeti, bağış geçmişi, yorum, geri bildirim, hesap güncelleme
+  - `AdminLoginController`: Yönetici giriş/çıkış
+  - `AdminHomeController`: Yönetici paneli servisleri
+- `Models/`
+  - `BagisDB.edmx`, `BagisDB.Context.cs`: EF Database-First model
+  - Temel varlıklar: `Kullanicilar`, `Bagis`, `Proje`, `Gelir`, `Gider`, `Loglar`, `Yonetici`
+- `Views/`
+  - Kullanıcı ekranları: `Home`, `Donate`, `Login`, `Account`, `About`
+  - Yönetici ekranları: `AdminLogin`, `AdminHome`
+- `Scripts/sayfa_scriptler/`
+  - `scriptDonate.js`
+  - `scriptAdminMainAndKullanici.js`
+
 
 ---
 
@@ -82,6 +101,14 @@ Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları s
 
 ---
 
+## Rota ve Başlangıç
+
+- Varsayılan rota: `/{controller}/{action}/{id}`
+- Açılış sayfası: `Home/Index`
+- Kullanıcı giriş: `Login/Index`
+- Yönetici giriş: `AdminLogin/Index`
+
+---
 
 ## 🤝 Katkıda Bulunma
 
